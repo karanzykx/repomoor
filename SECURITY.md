@@ -6,7 +6,7 @@ The current public preview is v0.1.0. Security fixes should target the newest re
 
 ## Reporting a vulnerability
 
-Please use GitHub's **Report a vulnerability** / private security advisory feature after the repository is created. Until private reporting is enabled, avoid posting working exploits, credentials, or sensitive project data in public issues. The project does not yet have an official security email.
+Please report vulnerabilities privately with GitHub's **Report a vulnerability** button on the [Security tab](https://github.com/karanzykx/repomoor/security). Do not post working exploits, credentials or sensitive project data in public issues.
 
 Useful reports include a minimal synthetic repository, exact CLI invocation, OS/Python version, expected behavior, actual behavior, and whether a path outside the selected repo could have been accessed or changed.
 

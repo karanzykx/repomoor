@@ -178,4 +178,4 @@ A GitHub Actions workflow in `.github/workflows/ci.yml` runs the offline tests o
 
 ## Contributing and license
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [LICENSE](LICENSE) (MIT). RepoMoor is not affiliated with Anthropic, Cursor, or any project in its catalog. Other projects keep their own licenses.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [LICENSE](LICENSE) (MIT). RepoMoor is an independent project. It is not affiliated with or endorsed by Anthropic, Anysphere (Cursor), GitHub, or any other tool vendor or project in its catalog. Product names such as Claude Code, Cursor and GitHub Copilot are trademarks of their owners and are used only to name the files RepoMoor detects. Linked projects keep their own licenses; RepoMoor includes none of their code.

@@ -100,7 +100,7 @@ class FileSafetyTests(unittest.TestCase):
             (root / "CLAUDE.md").write_text("original instructions\n")
             result = run_cli(root, "--apply", "--integrate", "--json")
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertEqual((root / "CLAUDE.md").read_text(), "original instructions\n")
+            self.assertEqual((root / "CLAUDE.md").read_text(encoding="utf-8"), "original instructions\n")
             self.assertFalse((root / "AGENTS.md").exists())
             self.assertTrue((root / ".repomoor" / "recommendations.md").exists())
 
@@ -111,7 +111,7 @@ class FileSafetyTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertTrue((root / "AGENTS.md").exists())
             self.assertFalse((root / "CLAUDE.md").exists())
-            self.assertIn("PROJECT_CONTEXT.md", (root / "AGENTS.md").read_text())
+            self.assertIn("PROJECT_CONTEXT.md", (root / "AGENTS.md").read_text(encoding="utf-8"))
 
     def test_create_only_idempotence(self):
         with tempfile.TemporaryDirectory() as d:
@@ -119,7 +119,7 @@ class FileSafetyTests(unittest.TestCase):
             self.assertEqual(cli.safe_create(root, ".repomoor/a.txt", "original"), "CREATED")
             self.assertIn("UNCHANGED", cli.safe_create(root, ".repomoor/a.txt", "original"))
             self.assertIn("PRESERVED", cli.safe_create(root, ".repomoor/a.txt", "replacement"))
-            self.assertEqual((root / ".repomoor/a.txt").read_text(), "original")
+            self.assertEqual((root / ".repomoor/a.txt").read_text(encoding="utf-8"), "original")
 
     def test_symlinked_report_directory_rejected(self):
         with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as outside:
@@ -273,7 +273,7 @@ class AnswersFileTests(unittest.TestCase):
                 answers.write_text(json.dumps({"agents": agents}))
                 result = run_cli(root, "--apply", "--integrate", "--answers", str(answers), "--json")
                 self.assertEqual(result.returncode, 0, result.stderr)
-                links = re.findall(r"`([^`]+PROJECT_CONTEXT\.md)`", (root / rule).read_text())
+                links = re.findall(r"`([^`]+PROJECT_CONTEXT\.md)`", (root / rule).read_text(encoding="utf-8"))
                 self.assertEqual(links, [".repomoor/PROJECT_CONTEXT.md"])
                 self.assertTrue((root / links[0]).is_file())
                 self.assertNotIn("ai-bootstrap", result.stdout + run_cli(root, "--help").stdout)
@@ -361,7 +361,7 @@ class ExplainableScoringTests(unittest.TestCase):
             plan = json.loads(result.stdout)["plan"]
             self.assertEqual(plan["recommended"][0]["code"], "NATIVE_CONTEXT_BASELINE")
             self.assertTrue(plan["complexity_evidence"])
-            markdown = (root / ".repomoor" / "recommendations.md").read_text()
+            markdown = (root / ".repomoor" / "recommendations.md").read_text(encoding="utf-8")
             for item in plan["recommended"] + plan["optional_pilots"] + plan["skipped_details"]:
                 self.assertIn(f"`{item['code']}`", markdown)
 
@@ -417,7 +417,7 @@ class WriterHardeningTests(unittest.TestCase):
                 _, root, _ = self._dirs()
                 (root / ".repomoor").write_text("user file")
                 self.assertEqual(fs.safe_create(root, ".repomoor/a.txt", "x"), "REFUSED: path parent is not a directory")
-                self.assertEqual((root / ".repomoor").read_text(), "user file")
+                self.assertEqual((root / ".repomoor").read_text(encoding="utf-8"), "user file")
 
     def test_symlinked_parent_and_leaf_refused(self):
         for mode in self._modes():
@@ -431,7 +431,7 @@ class WriterHardeningTests(unittest.TestCase):
                 self.assertEqual(fs.safe_create(root, "leaf.txt", "x"), "REFUSED: existing symlink")
                 self.assertEqual(fs.safe_create(root, "dangling.txt", "x"), "REFUSED: existing symlink")
                 self.assertEqual(sorted(p.name for p in outside.iterdir()), ["target.txt"])
-                self.assertEqual((outside / "target.txt").read_text(), "outside")
+                self.assertEqual((outside / "target.txt").read_text(encoding="utf-8"), "outside")
 
     def test_existing_directory_or_fifo_leaf_preserved_without_blocking(self):
         for mode in self._modes():
@@ -481,7 +481,7 @@ class WriterHardeningTests(unittest.TestCase):
                     self.assertEqual(status, "REFUSED: symlinked directory")
                 else:
                     self.assertEqual(status, "CREATED")  # into the directory that was opened, now renamed
-                    self.assertEqual((root / ".moved" / "a.txt").read_text(), "x")
+                    self.assertEqual((root / ".moved" / "a.txt").read_text(encoding="utf-8"), "x")
 
     @unittest.skipUnless(fs.HAS_DIR_FD, "dir_fd traversal unavailable on this platform")
     def test_concurrent_symlink_swapping_never_escapes(self):
@@ -530,7 +530,7 @@ class WriterHardeningTests(unittest.TestCase):
             status = fs.safe_create(root, "new.txt", "x")
         self.assertTrue(status.startswith("ERROR: write failed"), status)
         self.assertFalse((root / "new.txt").exists())
-        self.assertEqual((root / "keep.txt").read_text(), "user")
+        self.assertEqual((root / "keep.txt").read_text(encoding="utf-8"), "user")
 
 
 class ScanLimitTests(unittest.TestCase):
@@ -655,7 +655,7 @@ class ParseLimitTests(unittest.TestCase):
         self.assertIn("parse-issues", [x["code"] for x in doctor["checks"]])
         self.assertIn("package.json (too-deep)", run_cli(root, "--non-interactive").stdout)
         self.assertEqual(run_cli(root, "--apply", "--json").returncode, 0)
-        self.assertIn("`package.json` (too-deep)", (root / ".repomoor" / "PROJECT_CONTEXT.md").read_text())
+        self.assertIn("`package.json` (too-deep)", (root / ".repomoor" / "PROJECT_CONTEXT.md").read_text(encoding="utf-8"))
 
     def test_hostile_answers_and_profile_do_not_crash(self):
         with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as a:
@@ -732,7 +732,7 @@ class RulePreservationTests(unittest.TestCase):
             self.assertNotIn("AGENTS.md", report["apply_results"])
             self.assertFalse((root / "AGENTS.md").exists())
             self.assertIn("apps/web/AGENTS.md", " ".join(report["notices"]))
-            self.assertIn("`apps/web/AGENTS.md`", (root / ".repomoor" / "PROJECT_CONTEXT.md").read_text())
+            self.assertIn("`apps/web/AGENTS.md`", (root / ".repomoor" / "PROJECT_CONTEXT.md").read_text(encoding="utf-8"))
             doctor = json.loads(run_cli(root, "--doctor", "--json").stdout)
             self.assertIn("nested-instructions", [x["code"] for x in doctor["checks"]])
 
@@ -764,7 +764,7 @@ class RulePreservationTests(unittest.TestCase):
             self.assertEqual(signals["instruction_files"][0]["scope"], "root")
             report = json.loads(run_cli(root, "--apply", "--integrate", "--json").stdout)
             self.assertNotIn("AGENTS.md", report["apply_results"])
-            self.assertEqual((root / "agents.md").read_text(), "lowercase root rules\n")
+            self.assertEqual((root / "agents.md").read_text(encoding="utf-8"), "lowercase root rules\n")
 
     def test_vendored_and_skipped_directories_do_not_count(self):
         with tempfile.TemporaryDirectory() as d:

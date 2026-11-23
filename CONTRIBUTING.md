@@ -54,6 +54,10 @@ Never regenerate just to make a failure go away without reading the diff. To cov
 - [ ] Claims are sourced and differentiated from hypotheses.
 - [ ] Private paths, credentials or proprietary repository data are absent from commits and fixtures.
 
+## License of contributions
+
+By opening a pull request, you confirm that the contribution is your own work (or that you have the right to submit it) and you agree that it is licensed under the project's [MIT License](LICENSE). Do not submit code copied from projects with incompatible licenses.
+
 ## Policy for third-party adapters
 
 PRs proposing active installation are out of scope until `docs/ADAPTER_SPEC.md` security gates are implemented. A proposal-only adapter spec or test harness is welcome.
