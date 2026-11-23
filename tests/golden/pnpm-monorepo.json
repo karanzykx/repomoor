@@ -1,0 +1,812 @@
+{
+ "files_after_apply": {
+  ".repomoor/PROJECT_CONTEXT.md": [
+   "# RepoMoor Project Orientation (generated, review before relying on it)",
+   "",
+   "> These are observed hints, not verified architecture facts. Existing project guidance takes precedence.",
+   "",
+   "- Languages seen: TypeScript (3 files)",
+   "- Workspace manifest detected: yes",
+   "- Possible multiple services/packages: yes",
+   "- Source files sampled: 3; Counts are based on filename scanning, not static analysis.",
+   "- Relevant manifests: `apps/api/package.json`, `apps/web/package.json`, `apps/worker/package.json`, `package.json`, `pnpm-workspace.yaml`",
+   "- Coding agents selected: claude",
+   "",
+   "## Efficient and reliable exploration",
+   "",
+   "1. Begin with the smallest relevant part of the project; use scoped searches and targeted symbol/file reads.",
+   "2. Read existing `AGENTS.md`, `CLAUDE.md`, scoped rules and architecture docs before inventing conventions.",
+   "3. Use an already-configured graph only if its index is fresh; verify findings against source and tests.",
+   "4. For cross-service or high-risk changes, trace callers, dynamic registrations, configuration and tests; avoid relying on graph completeness.",
+   "5. Keep full diagnostics available if compact command output obscures an error.",
+   "6. After a verified change, record non-obvious architectural decisions in the team's existing decision-documentation system.",
+   "",
+   "This file does not automatically activate in your AI agent unless you explicitly link it from agent instructions."
+  ],
+  ".repomoor/project-profile.json": [
+   "{",
+   "  \"generator\": \"repomoor/0.1.0\",",
+   "  \"scope\": \"project-only\",",
+   "  \"no_installation_performed\": true,",
+   "  \"scan\": {",
+   "    \"source_counts\": {",
+   "      \"TypeScript\": 3",
+   "    },",
+   "    \"sampled_source_files\": 3,",
+   "    \"files_examined\": 8,",
+   "    \"scan_truncated\": false,",
+   "    \"truncation_reasons\": [],",
+   "    \"dirs_examined\": 5,",
+   "    \"dirs_unreadable\": 0,",
+   "    \"symlinks_skipped\": 0,",
+   "    \"manifests\": [",
+   "      \"apps/api/package.json\",",
+   "      \"apps/web/package.json\",",
+   "      \"apps/worker/package.json\",",
+   "      \"package.json\",",
+   "      \"pnpm-workspace.yaml\"",
+   "    ],",
+   "    \"component_roots\": [",
+   "      \"apps/api\",",
+   "      \"apps/web\",",
+   "      \"apps/worker\"",
+   "    ],",
+   "    \"nested_rule_paths\": []",
+   "  },",
+   "  \"signals\": {",
+   "    \"local_agent_configurations\": {},",
+   "    \"instruction_files\": [],",
+   "    \"configured_graph_tools\": [],",
+   "    \"configured_output_tools\": [],",
+   "    \"workspace_detected\": true,",
+   "    \"workspace_evidence\": [",
+   "      \"pnpm-workspace.yaml\",",
+   "      \"package.json workspaces\"",
+   "    ],",
+   "    \"possible_multiservice\": true,",
+   "    \"frontend_detected\": false,",
+   "    \"test_hints_found\": false,",
+   "    \"blank_or_uninitialized\": false,",
+   "    \"parse_issues\": []",
+   "  },",
+   "  \"answers\": {",
+   "    \"agents\": \"claude\",",
+   "    \"priority\": \"correctness\",",
+   "    \"pain\": \"impact\",",
+   "    \"future_project\": \"existing\",",
+   "    \"scope\": \"inferred\"",
+   "  },",
+   "  \"recommendation\": {",
+   "    \"complexity_assessment\": \"potentially-complex\",",
+   "    \"complexity_evidence\": [",
+   "      \"signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces\"",
+   "    ],",
+   "    \"no_automatic_install\": true,",
+   "    \"recommended\": [",
+   "      {",
+   "        \"name\": \"Native project context + curated architecture decisions\",",
+   "        \"purpose\": \"Small, accurate rules and relevant project docs instead of a large always-on prompt\",",
+   "        \"reason\": \"No third-party dependency; useful for any repo size. Preserve any existing agent instructions.\",",
+   "        \"installation\": \"None; create or edit docs manually only where needed.\",",
+   "        \"code\": \"NATIVE_CONTEXT_BASELINE\",",
+   "        \"evidence\": [",
+   "          \"policy:always\"",
+   "        ]",
+   "      },",
+   "      {",
+   "        \"name\": \"code-review-graph (optional pilot, not auto-install)\",",
+   "        \"purpose\": \"Change impact, graph relationships and relevant tests\",",
+   "        \"reason\": \"Large/multi-service repositories with impact-analysis needs warrant a controlled graph trial.\",",
+   "        \"installation\": \"Read its project-local integration instructions and audit planned config changes before setup.\",",
+   "        \"code\": \"GRAPH_PILOT_IMPACT\",",
+   "        \"evidence\": [",
+   "          \"signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces\",",
+   "          \"answer:pain=impact\"",
+   "        ]",
+   "      }",
+   "    ],",
+   "    \"optional_pilots\": [",
+   "      {",
+   "        \"name\": \"Trail-Code\",",
+   "        \"reason\": \"Alternative if recurring architectural decisions are a bigger waste than dependency tracing.\",",
+   "        \"code\": \"GRAPH_ALT_DISCOVERY\",",
+   "        \"evidence\": [",
+   "          \"signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces\",",
+   "          \"answer:pain=impact\"",
+   "        ]",
+   "      }",
+   "    ],",
+   "    \"deliberately_skipped\": [",
+   "      \"Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck.\"",
+   "    ],",
+   "    \"skipped_details\": [",
+   "      {",
+   "        \"reason\": \"Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck.\",",
+   "        \"code\": \"OUTPUT_SKIP_UNMEASURED\",",
+   "        \"evidence\": [",
+   "          \"answer:pain=impact\"",
+   "        ]",
+   "      }",
+   "    ],",
+   "    \"measurement\": [",
+   "      \"Successful task completion and regression-test correctness\",",
+   "      \"Full-session billed input/output tokens and prompt-cache usage\",",
+   "      \"Repeated tool calls, elapsed time, and dependency misses\",",
+   "      \"Index refresh overhead, agent tool usage and configuration maintenance\"",
+   "    ]",
+   "  }",
+   "}"
+  ],
+  ".repomoor/recommendations.md": [
+   "# AI Development Stack Recommendation",
+   "",
+   "Generated by a non-destructive local scan. No tools have been installed.",
+   "",
+   "Complexity: **potentially-complex** (`signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces`)",
+   "",
+   "Each decision lists its reason code and the evidence that triggered it. Codes are explained in RepoMoor's `docs/ARCHITECTURE.md`.",
+   "",
+   "## Recommended foundation / first pilots",
+   "",
+   "### Native project context + curated architecture decisions",
+   "",
+   "Small, accurate rules and relevant project docs instead of a large always-on prompt. No third-party dependency; useful for any repo size. Preserve any existing agent instructions.",
+   "",
+   "Setup: None; create or edit docs manually only where needed.",
+   "",
+   "Why: `NATIVE_CONTEXT_BASELINE` ← `policy:always`",
+   "",
+   "### code-review-graph (optional pilot, not auto-install)",
+   "",
+   "Change impact, graph relationships and relevant tests. Large/multi-service repositories with impact-analysis needs warrant a controlled graph trial.",
+   "",
+   "Setup: Read its project-local integration instructions and audit planned config changes before setup.",
+   "",
+   "Why: `GRAPH_PILOT_IMPACT` ← `signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces`; `answer:pain=impact`",
+   "",
+   "## Optional specialist tools",
+   "",
+   "- **Trail-Code**: Alternative if recurring architectural decisions are a bigger waste than dependency tracing. Why: `GRAPH_ALT_DISCOVERY` ← `signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces`; `answer:pain=impact`",
+   "",
+   "## Intentionally not configured",
+   "",
+   "- Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck. Why: `OUTPUT_SKIP_UNMEASURED` ← `answer:pain=impact`",
+   "",
+   "## A/B check before keeping a new integration",
+   "",
+   "- Successful task completion and regression-test correctness",
+   "- Full-session billed input/output tokens and prompt-cache usage",
+   "- Repeated tool calls, elapsed time, and dependency misses",
+   "- Index refresh overhead, agent tool usage and configuration maintenance",
+   "",
+   "Use clean task baselines and confirm the coding agent actually invokes the candidate tools. Do not interpret an individual retrieval's token savings as total task savings."
+  ],
+  "CLAUDE.md": [
+   "# Project agent orientation",
+   "",
+   "When beginning unfamiliar work, consult `.repomoor/PROJECT_CONTEXT.md` for a brief initial map. Follow source code and tests over inferred metadata."
+  ]
+ },
+ "runs": {
+  "answers-json": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": {
+    "answer_sources": {
+     "agents": "file",
+     "future_project": "inferred",
+     "pain": "file",
+     "priority": "file",
+     "scope": "inferred"
+    },
+    "answers": {
+     "agents": "claude",
+     "future_project": "existing",
+     "pain": "impact",
+     "priority": "correctness",
+     "scope": "inferred"
+    },
+    "files_to_create_if_applied": [
+     ".repomoor/project-profile.json",
+     ".repomoor/PROJECT_CONTEXT.md",
+     ".repomoor/recommendations.md"
+    ],
+    "notices": [],
+    "plan": {
+     "complexity_assessment": "potentially-complex",
+     "complexity_evidence": [
+      "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces"
+     ],
+     "deliberately_skipped": [
+      "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+     ],
+     "measurement": [
+      "Successful task completion and regression-test correctness",
+      "Full-session billed input/output tokens and prompt-cache usage",
+      "Repeated tool calls, elapsed time, and dependency misses",
+      "Index refresh overhead, agent tool usage and configuration maintenance"
+     ],
+     "no_automatic_install": true,
+     "optional_pilots": [
+      {
+       "code": "GRAPH_ALT_DISCOVERY",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=impact"
+       ],
+       "name": "Trail-Code",
+       "reason": "Alternative if recurring architectural decisions are a bigger waste than dependency tracing."
+      }
+     ],
+     "recommended": [
+      {
+       "code": "NATIVE_CONTEXT_BASELINE",
+       "evidence": [
+        "policy:always"
+       ],
+       "installation": "None; create or edit docs manually only where needed.",
+       "name": "Native project context + curated architecture decisions",
+       "purpose": "Small, accurate rules and relevant project docs instead of a large always-on prompt",
+       "reason": "No third-party dependency; useful for any repo size. Preserve any existing agent instructions."
+      },
+      {
+       "code": "GRAPH_PILOT_IMPACT",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=impact"
+       ],
+       "installation": "Read its project-local integration instructions and audit planned config changes before setup.",
+       "name": "code-review-graph (optional pilot, not auto-install)",
+       "purpose": "Change impact, graph relationships and relevant tests",
+       "reason": "Large/multi-service repositories with impact-analysis needs warrant a controlled graph trial."
+      }
+     ],
+     "skipped_details": [
+      {
+       "code": "OUTPUT_SKIP_UNMEASURED",
+       "evidence": [
+        "answer:pain=impact"
+       ],
+       "reason": "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+      }
+     ]
+    },
+    "root": "<ROOT>",
+    "scan": {
+     "component_roots": [
+      "apps/api",
+      "apps/web",
+      "apps/worker"
+     ],
+     "dirs_examined": 5,
+     "dirs_unreadable": 0,
+     "files_examined": 8,
+     "manifests": [
+      "apps/api/package.json",
+      "apps/web/package.json",
+      "apps/worker/package.json",
+      "package.json",
+      "pnpm-workspace.yaml"
+     ],
+     "nested_rule_paths": [],
+     "sampled_source_files": 3,
+     "scan_truncated": false,
+     "source_counts": {
+      "TypeScript": 3
+     },
+     "symlinks_skipped": 0,
+     "truncation_reasons": []
+    },
+    "signals": {
+     "blank_or_uninitialized": false,
+     "configured_graph_tools": [],
+     "configured_output_tools": [],
+     "frontend_detected": false,
+     "instruction_files": [],
+     "local_agent_configurations": {},
+     "parse_issues": [],
+     "possible_multiservice": true,
+     "test_hints_found": false,
+     "workspace_detected": true,
+     "workspace_evidence": [
+      "pnpm-workspace.yaml",
+      "package.json workspaces"
+     ]
+    }
+   }
+  },
+  "apply-again-text": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": [
+    "",
+    "=== RepoMoor ===",
+    "No installations. No global checks. Preview-only unless you pass --apply.",
+    "Detected: TypeScript",
+    "Detected: workspace/multiple project component signals",
+    "Existing local AI configurations: CLAUDE.md",
+    "",
+    "=== Recommendation preview ===",
+    "Project: <ROOT>",
+    "Sampled source files: 3 ",
+    "Architecture: potentially-complex (signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces)",
+    "",
+    "Foundation / pilots:",
+    "  + Native project context + curated architecture decisions [NATIVE_CONTEXT_BASELINE]",
+    "     No third-party dependency; useful for any repo size. Preserve any existing agent instructions.",
+    "     evidence: policy:always",
+    "  + Trail-Code (optional pilot, not auto-install) [GRAPH_PILOT_DISCOVERY]",
+    "     Cross-package/repository exploration or repeated discovery may benefit from targeted context. Validate against native search.",
+    "     evidence: signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces; answer:pain=unknown",
+    "",
+    "Optional:",
+    "  ? code-review-graph [GRAPH_ALT_IMPACT]: Alternative (not an addition) when change impact and targeted test selection dominate.",
+    "     evidence: signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces; answer:pain=unknown",
+    "",
+    "Intentionally skipped:",
+    "  - [OUTPUT_SKIP_UNMEASURED] Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck.",
+    "",
+    "Planned report files:",
+    "   .repomoor/project-profile.json (already exists)",
+    "   .repomoor/PROJECT_CONTEXT.md (already exists)",
+    "   .repomoor/recommendations.md (already exists)",
+    "",
+    "=== Apply: create-new-files only ===",
+    "  .repomoor/project-profile.json : PRESERVED (existing file differs; never overwritten)",
+    "  .repomoor/PROJECT_CONTEXT.md : PRESERVED (existing file differs; never overwritten)",
+    "  .repomoor/recommendations.md : PRESERVED (existing file differs; never overwritten)"
+   ]
+  },
+  "apply-integrate": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": {
+    "answer_sources": {
+     "agents": "file",
+     "future_project": "inferred",
+     "pain": "file",
+     "priority": "file",
+     "scope": "inferred"
+    },
+    "answers": {
+     "agents": "claude",
+     "future_project": "existing",
+     "pain": "impact",
+     "priority": "correctness",
+     "scope": "inferred"
+    },
+    "apply_results": {
+     ".repomoor/PROJECT_CONTEXT.md": "CREATED",
+     ".repomoor/project-profile.json": "CREATED",
+     ".repomoor/recommendations.md": "CREATED",
+     "CLAUDE.md": "CREATED"
+    },
+    "files_to_create_if_applied": [
+     ".repomoor/project-profile.json",
+     ".repomoor/PROJECT_CONTEXT.md",
+     ".repomoor/recommendations.md",
+     "CLAUDE.md"
+    ],
+    "notices": [],
+    "plan": {
+     "complexity_assessment": "potentially-complex",
+     "complexity_evidence": [
+      "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces"
+     ],
+     "deliberately_skipped": [
+      "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+     ],
+     "measurement": [
+      "Successful task completion and regression-test correctness",
+      "Full-session billed input/output tokens and prompt-cache usage",
+      "Repeated tool calls, elapsed time, and dependency misses",
+      "Index refresh overhead, agent tool usage and configuration maintenance"
+     ],
+     "no_automatic_install": true,
+     "optional_pilots": [
+      {
+       "code": "GRAPH_ALT_DISCOVERY",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=impact"
+       ],
+       "name": "Trail-Code",
+       "reason": "Alternative if recurring architectural decisions are a bigger waste than dependency tracing."
+      }
+     ],
+     "recommended": [
+      {
+       "code": "NATIVE_CONTEXT_BASELINE",
+       "evidence": [
+        "policy:always"
+       ],
+       "installation": "None; create or edit docs manually only where needed.",
+       "name": "Native project context + curated architecture decisions",
+       "purpose": "Small, accurate rules and relevant project docs instead of a large always-on prompt",
+       "reason": "No third-party dependency; useful for any repo size. Preserve any existing agent instructions."
+      },
+      {
+       "code": "GRAPH_PILOT_IMPACT",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=impact"
+       ],
+       "installation": "Read its project-local integration instructions and audit planned config changes before setup.",
+       "name": "code-review-graph (optional pilot, not auto-install)",
+       "purpose": "Change impact, graph relationships and relevant tests",
+       "reason": "Large/multi-service repositories with impact-analysis needs warrant a controlled graph trial."
+      }
+     ],
+     "skipped_details": [
+      {
+       "code": "OUTPUT_SKIP_UNMEASURED",
+       "evidence": [
+        "answer:pain=impact"
+       ],
+       "reason": "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+      }
+     ]
+    },
+    "root": "<ROOT>",
+    "scan": {
+     "component_roots": [
+      "apps/api",
+      "apps/web",
+      "apps/worker"
+     ],
+     "dirs_examined": 5,
+     "dirs_unreadable": 0,
+     "files_examined": 8,
+     "manifests": [
+      "apps/api/package.json",
+      "apps/web/package.json",
+      "apps/worker/package.json",
+      "package.json",
+      "pnpm-workspace.yaml"
+     ],
+     "nested_rule_paths": [],
+     "sampled_source_files": 3,
+     "scan_truncated": false,
+     "source_counts": {
+      "TypeScript": 3
+     },
+     "symlinks_skipped": 0,
+     "truncation_reasons": []
+    },
+    "signals": {
+     "blank_or_uninitialized": false,
+     "configured_graph_tools": [],
+     "configured_output_tools": [],
+     "frontend_detected": false,
+     "instruction_files": [],
+     "local_agent_configurations": {},
+     "parse_issues": [],
+     "possible_multiservice": true,
+     "test_hints_found": false,
+     "workspace_detected": true,
+     "workspace_evidence": [
+      "pnpm-workspace.yaml",
+      "package.json workspaces"
+     ]
+    }
+   }
+  },
+  "doctor-after-text": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": [
+    "RepoMoor project health check (read-only)",
+    "  [INFO] Found local AI configuration(s): CLAUDE.md. No changes proposed.",
+    "  [OK  ] Saved profile matches the current sampled manifests and language counts.",
+    "  [INFO] No commands, MCP servers, global settings, or third-party installations were executed or tested.",
+    "Warnings: 0. No files changed."
+   ]
+  },
+  "doctor-before": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": {
+    "checks": [
+     {
+      "code": "no-saved-profile",
+      "level": "info",
+      "message": "No readable generated profile found. Run with --apply to create one without overwriting files."
+     },
+     {
+      "code": "runtime-not-checked",
+      "level": "info",
+      "message": "No commands, MCP servers, global settings, or third-party installations were executed or tested."
+     }
+    ],
+    "root": "<ROOT>",
+    "warning_count": 0
+   }
+  },
+  "preview-json": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": {
+    "answer_sources": {
+     "agents": "default",
+     "future_project": "inferred",
+     "pain": "default",
+     "priority": "default",
+     "scope": "inferred"
+    },
+    "answers": {
+     "agents": "both",
+     "future_project": "existing",
+     "pain": "unknown",
+     "priority": "balanced",
+     "scope": "inferred"
+    },
+    "files_to_create_if_applied": [
+     ".repomoor/project-profile.json",
+     ".repomoor/PROJECT_CONTEXT.md",
+     ".repomoor/recommendations.md"
+    ],
+    "notices": [],
+    "plan": {
+     "complexity_assessment": "potentially-complex",
+     "complexity_evidence": [
+      "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces"
+     ],
+     "deliberately_skipped": [
+      "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+     ],
+     "measurement": [
+      "Successful task completion and regression-test correctness",
+      "Full-session billed input/output tokens and prompt-cache usage",
+      "Repeated tool calls, elapsed time, and dependency misses",
+      "Index refresh overhead, agent tool usage and configuration maintenance"
+     ],
+     "no_automatic_install": true,
+     "optional_pilots": [
+      {
+       "code": "GRAPH_ALT_IMPACT",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=unknown"
+       ],
+       "name": "code-review-graph",
+       "reason": "Alternative (not an addition) when change impact and targeted test selection dominate."
+      }
+     ],
+     "recommended": [
+      {
+       "code": "NATIVE_CONTEXT_BASELINE",
+       "evidence": [
+        "policy:always"
+       ],
+       "installation": "None; create or edit docs manually only where needed.",
+       "name": "Native project context + curated architecture decisions",
+       "purpose": "Small, accurate rules and relevant project docs instead of a large always-on prompt",
+       "reason": "No third-party dependency; useful for any repo size. Preserve any existing agent instructions."
+      },
+      {
+       "code": "GRAPH_PILOT_DISCOVERY",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=unknown"
+       ],
+       "installation": "Review `trail init --dry-run` and project-only `trail init --no-global` after checking its documentation and effects.",
+       "name": "Trail-Code (optional pilot, not auto-install)",
+       "purpose": "Symbol/dependency mapping plus reusable decisions",
+       "reason": "Cross-package/repository exploration or repeated discovery may benefit from targeted context. Validate against native search."
+      }
+     ],
+     "skipped_details": [
+      {
+       "code": "OUTPUT_SKIP_UNMEASURED",
+       "evidence": [
+        "answer:pain=unknown"
+       ],
+       "reason": "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+      }
+     ]
+    },
+    "root": "<ROOT>",
+    "scan": {
+     "component_roots": [
+      "apps/api",
+      "apps/web",
+      "apps/worker"
+     ],
+     "dirs_examined": 5,
+     "dirs_unreadable": 0,
+     "files_examined": 8,
+     "manifests": [
+      "apps/api/package.json",
+      "apps/web/package.json",
+      "apps/worker/package.json",
+      "package.json",
+      "pnpm-workspace.yaml"
+     ],
+     "nested_rule_paths": [],
+     "sampled_source_files": 3,
+     "scan_truncated": false,
+     "source_counts": {
+      "TypeScript": 3
+     },
+     "symlinks_skipped": 0,
+     "truncation_reasons": []
+    },
+    "signals": {
+     "blank_or_uninitialized": false,
+     "configured_graph_tools": [],
+     "configured_output_tools": [],
+     "frontend_detected": false,
+     "instruction_files": [],
+     "local_agent_configurations": {},
+     "parse_issues": [],
+     "possible_multiservice": true,
+     "test_hints_found": false,
+     "workspace_detected": true,
+     "workspace_evidence": [
+      "pnpm-workspace.yaml",
+      "package.json workspaces"
+     ]
+    }
+   }
+  },
+  "preview-text": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": [
+    "",
+    "=== RepoMoor ===",
+    "No installations. No global checks. Preview-only unless you pass --apply.",
+    "Detected: TypeScript",
+    "Detected: workspace/multiple project component signals",
+    "",
+    "=== Recommendation preview ===",
+    "Project: <ROOT>",
+    "Sampled source files: 3 ",
+    "Architecture: potentially-complex (signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces)",
+    "",
+    "Foundation / pilots:",
+    "  + Native project context + curated architecture decisions [NATIVE_CONTEXT_BASELINE]",
+    "     No third-party dependency; useful for any repo size. Preserve any existing agent instructions.",
+    "     evidence: policy:always",
+    "  + Trail-Code (optional pilot, not auto-install) [GRAPH_PILOT_DISCOVERY]",
+    "     Cross-package/repository exploration or repeated discovery may benefit from targeted context. Validate against native search.",
+    "     evidence: signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces; answer:pain=unknown",
+    "",
+    "Optional:",
+    "  ? code-review-graph [GRAPH_ALT_IMPACT]: Alternative (not an addition) when change impact and targeted test selection dominate.",
+    "     evidence: signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces; answer:pain=unknown",
+    "",
+    "Intentionally skipped:",
+    "  - [OUTPUT_SKIP_UNMEASURED] Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck.",
+    "",
+    "Planned report files:",
+    "   .repomoor/project-profile.json (new)",
+    "   .repomoor/PROJECT_CONTEXT.md (new)",
+    "   .repomoor/recommendations.md (new)",
+    "",
+    "Preview complete. Nothing changed. To create the report, rerun with --apply.",
+    "To also create minimal instructions only where none exist: --apply --integrate"
+   ]
+  },
+  "small-dir-budget-json": {
+   "returncode": 0,
+   "stderr": [],
+   "stdout": {
+    "answer_sources": {
+     "agents": "default",
+     "future_project": "inferred",
+     "pain": "default",
+     "priority": "default",
+     "scope": "inferred"
+    },
+    "answers": {
+     "agents": "both",
+     "future_project": "existing",
+     "pain": "unknown",
+     "priority": "balanced",
+     "scope": "inferred"
+    },
+    "files_to_create_if_applied": [
+     ".repomoor/project-profile.json",
+     ".repomoor/PROJECT_CONTEXT.md",
+     ".repomoor/recommendations.md"
+    ],
+    "notices": [],
+    "plan": {
+     "complexity_assessment": "potentially-complex",
+     "complexity_evidence": [
+      "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces"
+     ],
+     "deliberately_skipped": [
+      "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+     ],
+     "measurement": [
+      "Successful task completion and regression-test correctness",
+      "Full-session billed input/output tokens and prompt-cache usage",
+      "Repeated tool calls, elapsed time, and dependency misses",
+      "Index refresh overhead, agent tool usage and configuration maintenance"
+     ],
+     "no_automatic_install": true,
+     "optional_pilots": [
+      {
+       "code": "GRAPH_ALT_IMPACT",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=unknown"
+       ],
+       "name": "code-review-graph",
+       "reason": "Alternative (not an addition) when change impact and targeted test selection dominate."
+      }
+     ],
+     "recommended": [
+      {
+       "code": "NATIVE_CONTEXT_BASELINE",
+       "evidence": [
+        "policy:always"
+       ],
+       "installation": "None; create or edit docs manually only where needed.",
+       "name": "Native project context + curated architecture decisions",
+       "purpose": "Small, accurate rules and relevant project docs instead of a large always-on prompt",
+       "reason": "No third-party dependency; useful for any repo size. Preserve any existing agent instructions."
+      },
+      {
+       "code": "GRAPH_PILOT_DISCOVERY",
+       "evidence": [
+        "signal:workspace_detected=pnpm-workspace.yaml,package.json workspaces",
+        "answer:pain=unknown"
+       ],
+       "installation": "Review `trail init --dry-run` and project-only `trail init --no-global` after checking its documentation and effects.",
+       "name": "Trail-Code (optional pilot, not auto-install)",
+       "purpose": "Symbol/dependency mapping plus reusable decisions",
+       "reason": "Cross-package/repository exploration or repeated discovery may benefit from targeted context. Validate against native search."
+      }
+     ],
+     "skipped_details": [
+      {
+       "code": "OUTPUT_SKIP_UNMEASURED",
+       "evidence": [
+        "answer:pain=unknown"
+       ],
+       "reason": "Do not add RTK/Headroom until logs/tool outputs are measured as a real bottleneck."
+      }
+     ]
+    },
+    "root": "<ROOT>",
+    "scan": {
+     "component_roots": [],
+     "dirs_examined": 2,
+     "dirs_unreadable": 0,
+     "files_examined": 2,
+     "manifests": [
+      "package.json",
+      "pnpm-workspace.yaml"
+     ],
+     "nested_rule_paths": [],
+     "sampled_source_files": 0,
+     "scan_truncated": true,
+     "source_counts": {},
+     "symlinks_skipped": 0,
+     "truncation_reasons": [
+      "max_dirs"
+     ]
+    },
+    "signals": {
+     "blank_or_uninitialized": false,
+     "configured_graph_tools": [],
+     "configured_output_tools": [],
+     "frontend_detected": false,
+     "instruction_files": [],
+     "local_agent_configurations": {},
+     "parse_issues": [],
+     "possible_multiservice": true,
+     "test_hints_found": false,
+     "workspace_detected": true,
+     "workspace_evidence": [
+      "pnpm-workspace.yaml",
+      "package.json workspaces"
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,100 @@
+{
+ "answers-bad-choice": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --answers: invalid choice for 'agents'; allowed: both, claude, cursor, other. No files changed."
+  ],
+  "stdout": []
+ },
+ "answers-not-json": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --answers: answers file is not valid UTF-8 JSON. No files changed."
+  ],
+  "stdout": []
+ },
+ "answers-too-deep": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --answers: answers file is nested too deeply. No files changed."
+  ],
+  "stdout": []
+ },
+ "answers-unknown-key": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --answers: unknown answer key(s): 'agent'; allowed: agents, priority, pain, future_project, scope. No files changed."
+  ],
+  "stdout": []
+ },
+ "catalog-text": {
+  "returncode": 0,
+  "stderr": [],
+  "stdout": [
+   "RepoMoor research catalog (not a tool installer)",
+   "  Graphify                 code-intelligence    https://github.com/Graphify-Labs/graphify",
+   "  GitNexus                 code-intelligence    https://github.com/abhigyanpatwari/GitNexus",
+   "  codebase-memory-mcp      code-intelligence    https://github.com/DeusData/codebase-memory-mcp",
+   "  code-review-graph        code-intelligence    https://github.com/tirth8205/code-review-graph",
+   "  Trail-Code               memory+graph         https://github.com/trailhq/Trail-Code",
+   "  token-savior             mixed                https://github.com/Mibayy/token-savior",
+   "  jcodemunch-mcp           symbol-retrieval     https://github.com/jgravelle/jcodemunch-mcp",
+   "  toktoken                 symbol-retrieval     https://github.com/mauriziofonte/toktoken",
+   "  tokensave                mixed                https://github.com/aovestdipaperino/tokensave",
+   "  codemap                  lightweight-map      https://github.com/jordancoin/codemap",
+   "  sprout                   lightweight-map      https://github.com/Sprout-DevLabs/sprout",
+   "  RepoMapper               lightweight-map      https://github.com/pdavis68/RepoMapper",
+   "  repomix                  context-export       https://github.com/yamadashy/repomix",
+   "  aider                    coding-agent         https://github.com/Aider-AI/aider",
+   "  rtk                      output-compression   https://github.com/rtk-ai/rtk",
+   "  headroom                 output-compression   https://github.com/headroomlabs-ai/headroom",
+   "  agent-browser            browser              https://github.com/vercel-labs/agent-browser",
+   "  claude-mem               memory               https://github.com/thedotmack/claude-mem",
+   "  caveman                  output-compression   https://github.com/JuliusBrussee/caveman",
+   "",
+   "Verify current licensing, maintenance, and project-only install behavior upstream."
+  ]
+ },
+ "catalog-with-apply": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --catalog cannot be combined with --apply, --integrate, or --doctor"
+  ],
+  "stdout": []
+ },
+ "doctor-with-apply": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --doctor is read-only and cannot be combined with --apply or --integrate"
+  ],
+  "stdout": []
+ },
+ "integrate-without-apply": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --integrate requires --apply"
+  ],
+  "stdout": []
+ },
+ "max-dirs-out-of-range": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: --max-dirs must be 1..200000"
+  ],
+  "stdout": []
+ },
+ "missing-root": {
+  "returncode": 2,
+  "stderr": [
+   "repomoor.py: error: Project path does not exist or is not a directory"
+  ],
+  "stdout": []
+ },
+ "version": {
+  "returncode": 0,
+  "stderr": [],
+  "stdout": [
+   "0.1.0"
+  ]
+ }
+}

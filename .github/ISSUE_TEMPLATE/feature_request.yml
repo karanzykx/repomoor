@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a safe, measurable improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and affected project types
+      description: What happens today, and who is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Filesystem, global-settings, network and data impact
+      description: Does this affect existing rules or require installing tools?
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Acceptance tests and measurable result
+    validations:
+      required: true

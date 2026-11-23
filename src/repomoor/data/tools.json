@@ -1,0 +1,214 @@
+{
+  "disclaimer": "Research registry, not evidence of installation, security, savings, maintained status, or license suitability. Verify upstream before use.",
+  "tools": [
+    {
+      "name": "Graphify",
+      "repository": "Graphify-Labs/graphify",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "category": "code-intelligence",
+      "purpose": "Knowledge graphs across code and related assets",
+      "pilot_effort": "Medium",
+      "review_note": "Alternative to other primary code graphs",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "GitNexus",
+      "repository": "abhigyanpatwari/GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "category": "code-intelligence",
+      "purpose": "Dependency/flow and impact exploration",
+      "pilot_effort": "Medium",
+      "review_note": "Check licensing and compare against one other graph",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "codebase-memory-mcp",
+      "repository": "DeusData/codebase-memory-mcp",
+      "url": "https://github.com/DeusData/codebase-memory-mcp",
+      "category": "code-intelligence",
+      "purpose": "Symbol and dependency graph with MCP retrieval",
+      "pilot_effort": "Medium",
+      "review_note": "Do not stack blindly with GitNexus / graph tools",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "code-review-graph",
+      "repository": "tirth8205/code-review-graph",
+      "url": "https://github.com/tirth8205/code-review-graph",
+      "category": "code-intelligence",
+      "purpose": "Review, dependency impact and affected-code navigation",
+      "pilot_effort": "Medium",
+      "review_note": "Best piloted on change-impact tasks",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "Trail-Code",
+      "repository": "trailhq/Trail-Code",
+      "url": "https://github.com/trailhq/Trail-Code",
+      "category": "memory+graph",
+      "purpose": "Code map plus reusable project learnings",
+      "pilot_effort": "Medium",
+      "review_note": "Inspect any global-side-effect flags before a project-local setup",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "token-savior",
+      "repository": "Mibayy/token-savior",
+      "url": "https://github.com/Mibayy/token-savior",
+      "category": "mixed",
+      "purpose": "Experimental token efficiency / navigation helpers",
+      "pilot_effort": "Experimental",
+      "review_note": "Verify agent actually invokes the tools",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "jcodemunch-mcp",
+      "repository": "jgravelle/jcodemunch-mcp",
+      "url": "https://github.com/jgravelle/jcodemunch-mcp",
+      "category": "symbol-retrieval",
+      "purpose": "Retrieve exact code symbols",
+      "pilot_effort": "Medium",
+      "review_note": "Check commercial license terms upstream",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "toktoken",
+      "repository": "mauriziofonte/toktoken",
+      "url": "https://github.com/mauriziofonte/toktoken",
+      "category": "symbol-retrieval",
+      "purpose": "Lightweight symbol search",
+      "pilot_effort": "Medium",
+      "review_note": "Verify ctags prerequisites upstream",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "tokensave",
+      "repository": "aovestdipaperino/tokensave",
+      "url": "https://github.com/aovestdipaperino/tokensave",
+      "category": "mixed",
+      "purpose": "Code exploration and token-focused retrieval",
+      "pilot_effort": "Experimental",
+      "review_note": "May overlap other search/index tools",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "codemap",
+      "repository": "jordancoin/codemap",
+      "url": "https://github.com/jordancoin/codemap",
+      "category": "lightweight-map",
+      "purpose": "Repository map and code navigation",
+      "pilot_effort": "Low",
+      "review_note": "Candidate for small and medium repositories",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "sprout",
+      "repository": "Sprout-DevLabs/sprout",
+      "url": "https://github.com/Sprout-DevLabs/sprout",
+      "category": "lightweight-map",
+      "purpose": "Fast structural overview and suggested changes/tests",
+      "pilot_effort": "Low",
+      "review_note": "Candidate when a full graph seems heavy",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "RepoMapper",
+      "repository": "pdavis68/RepoMapper",
+      "url": "https://github.com/pdavis68/RepoMapper",
+      "category": "lightweight-map",
+      "purpose": "Repository map exposed for agent use",
+      "pilot_effort": "Low",
+      "review_note": "Overlaps native and Aider-like repo maps",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "repomix",
+      "repository": "yamadashy/repomix",
+      "url": "https://github.com/yamadashy/repomix",
+      "category": "context-export",
+      "purpose": "Selective one-time repository packaging",
+      "pilot_effort": "Low",
+      "review_note": "Avoid repeatedly injecting entire repository snapshots",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "aider",
+      "repository": "Aider-AI/aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "category": "coding-agent",
+      "purpose": "Alternative coding agent with repository mapping",
+      "pilot_effort": "Medium",
+      "review_note": "Not a drop-in optimizer for Claude Code or Cursor",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "rtk",
+      "repository": "rtk-ai/rtk",
+      "url": "https://github.com/rtk-ai/rtk",
+      "category": "output-compression",
+      "purpose": "Compact terminal / build / test command responses",
+      "pilot_effort": "Low",
+      "review_note": "Measure total task cost, keep full-output fallback",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "headroom",
+      "repository": "headroomlabs-ai/headroom",
+      "url": "https://github.com/headroomlabs-ai/headroom",
+      "category": "output-compression",
+      "purpose": "Tool-response and structured-output compression",
+      "pilot_effort": "Medium",
+      "review_note": "Potentially helpful for log / JSON heavy tasks",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "agent-browser",
+      "repository": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "category": "browser",
+      "purpose": "Browser automation with compact page interaction",
+      "pilot_effort": "Low",
+      "review_note": "Specialist for frontend verification",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "claude-mem",
+      "repository": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "category": "memory",
+      "purpose": "Automatic cross-session memory capture and recall",
+      "pilot_effort": "Medium",
+      "review_note": "Check observer token overhead and overlap with native memory",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    },
+    {
+      "name": "caveman",
+      "repository": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "category": "output-compression",
+      "purpose": "Compact tool/proxy output workflows",
+      "pilot_effort": "Experimental",
+      "review_note": "Benchmark independently of other compression layers",
+      "installed_by_repomoor": false,
+      "status": "research-candidate"
+    }
+  ]
+}

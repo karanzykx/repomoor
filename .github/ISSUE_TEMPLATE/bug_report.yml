@@ -1,0 +1,40 @@
+name: Bug report
+description: Report incorrect detection, CLI behavior or safety regression
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a report. Please sanitize filenames, manifests, and CLI output; do not attach secret-bearing MCP configs or private source code.
+  - type: input
+    id: version
+    attributes:
+      label: RepoMoor version
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: OS and Python version
+      placeholder: Ubuntu 24.04 / Python 3.12
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps (using a synthetic repo)
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior (remove private details)
+    validations:
+      required: true

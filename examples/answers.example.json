@@ -1,0 +1,6 @@
+{
+  "repomoor_answers_version": 1,
+  "agents": "claude",
+  "priority": "correctness",
+  "pain": "impact"
+}
